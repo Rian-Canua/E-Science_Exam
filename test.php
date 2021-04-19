@@ -26,7 +26,7 @@ $_SESSION['counter'] = 0 ;
     <option value="green">Coloured Pencil - Green </option>
 </select>
 <h3 id="label1">Input </h3>
-<input id="counter" style="width:150px;" maxLength = 30 onchange='counter()'/> 
+<input id="counter" style="width:150px;" maxLength = 30 onkeyup="counter()" disabled/> 
 <label id="test"></label> 
 <script>
     function select()
@@ -35,22 +35,26 @@ $_SESSION['counter'] = 0 ;
         var x =document.getElementById("selector").value;
         if(x =="red"|| x == "blue" || x =="green")
         {
-            <?php  $_SESSION['counter1'] = 30 ?> 
+            
+            document.getElementById("counter").disabled = false;
             document.getElementById("counter").innerHTML = " ";
             document.getElementById("test").innerHTML = "30";
+            document.getElementById("counter").maxLength = "30";
         }
         else if(x =="graphite")
         {
-            <?php $_SESSION['counter2'] = 50; ?> 
-            // alert(""); 
+            document.getElementById("counter").disabled = false;
             document.getElementById("counter").value = " ";
             document.getElementById("test").innerHTML = "50";
+            document.getElementById("counter").maxLength = "50";
         }
     }
     function counter()
     {
+        
         var lenght = (document.getElementById("counter").value).length;
-        document.getElementById("test").innerHTML = (document.getElementById("selector").value);
+        var limit = document.getElementById("counter").maxLength;
+        document.getElementById("test").innerHTML = limit- lenght +"/"+ limit ;
         
     }
     function crud()
